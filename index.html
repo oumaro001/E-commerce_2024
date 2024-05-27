@@ -28,9 +28,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="vet_femme.html">Vêtements pour femmes</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="article_id.html">id</a>
-              </li>
+             
             </ul>
             <form id="searchForm" role="search" class="d-flex">
               <input type="text" id="search" name="username" required aria-label="Search" class="form-control me-2" placeholder="Recherche">
@@ -39,7 +37,8 @@
           </div>
         </div>
       </nav>
-      <section id="carousel_acceuil" >
+      <div id="loader" ></div>
+      <section id="carousel_acceuil"class="wrapper" >
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner" id="carrousel_header">
            
@@ -54,7 +53,7 @@
           </button>
         </div>
       </section>
-      <foote class="w-100 d-flex justify-content-between bg-dark text-white">
+      <footer class="w-100 d-flex justify-content-between bg-dark text-white" id="footer">
         <p>Oumaro e-commerce 2024</p> <span id="date_copyright"></span>
       </footer>
     
@@ -96,6 +95,19 @@ fetch(api_URL, { method: 'GET' })
         }
     })
     .catch(error => console.error('Error fetching images:', error));
+
+
+    // scripts.js
+document.addEventListener("DOMContentLoaded", function() {
+    // Attendre que tout le contenu de la page soit complètement chargé
+    window.addEventListener("load", function() {
+        // Masquer le loader
+        document.getElementById("loader").style.display = "none";
+        // Afficher le contenu principal
+        document.getElementById("content").style.display = "block";
+    });
+});
+
 
 </script>
 
