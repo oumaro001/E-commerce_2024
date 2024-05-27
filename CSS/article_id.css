@@ -1,0 +1,43 @@
+*{
+
+    filter: blur(2,5);
+    animation: 2s 2s ease-in-out;
+}
+
+#section_article{
+
+    margin-bottom: 50px !important;
+}
+
+.card_article img {
+
+    width: 30% !important;
+    margin: 20px auto;
+    object-fit:contain
+}
+
+.card_article{
+
+    width: 90%;
+}
+
+.text_card p {
+
+    font-weight: bold !important;
+}
+
+.text_card {
+    padding: 20px;
+    object-fit: cover;
+    /* display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;  ******/
+}
+
+.text_card a:hover {
+
+    background-color: white;
+    color: black;
+    outline: 1px solid black;
+    /* outline permet de ne pas faire bouger les lignes en hover */
+}

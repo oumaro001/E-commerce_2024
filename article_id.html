@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="CSS/bootstrap.css" rel="stylesheet" />
+    <link href="CSS/article_id.css" rel="stylesheet">
+        <title>Details</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">E-commerce</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="eletronique.html">Electronique</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="bijoux.html">Bijoux</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="vet_homme.html">Vêtements pour hommes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="vet_femme.html">Vêtements pour femmes</a>
+              </li>
+             
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-sm-2" type="search" placeholder="Recherche">
+              <button class="btn btn-secondary my-2 my-sm-0" type="submit">Recherche</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <h1 class="text-center mt-5" id="titre_article"></h1>
+
+      <section class="d-flex justify-content-center flex-wrap " id="section_article">
+
+      </section>
+
+      <foote class="w-100 d-flex justify-content-between bg-dark text-white">
+        <p>Oumaro e-commerce 2024</p> <span id="date_copyright"></span>
+      </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+  let date = new Date().getFullYear();
+  let date_copyright = document.getElementById('date_copyright').innerHTML = `${date} &copy;`;
+  let titre_article = document.getElementById('titre_article');
+
+  /*** permet de recuperer l'id de l'article *****/
+  const urlParams = new URLSearchParams(window.location.search);
+  let id_article = urlParams.get('id');
+  
+  let section_article = document.getElementById('section_article');
+  const api_URL = `https://fakestoreapi.com/products/${id_article}`
+  
+  fetch(api_URL, { method: 'GET' })
+      .then(response => response.json())
+      .then(data => {
+          const article = data;
+  
+          console.log(article);
+
+
+          titre_article.textContent = article.title;
+          
+            let block_article = document.createElement('div');
+              block_article.classList.add('card','m-2','card_article');
+             
+              block_article.innerHTML = `
+                <img src="${article.image}" class="card-img-top h-100 w-100" alt="...">
+                <div class="card-body text_card">
+                  <h5 class="card-title">${article.title}</h5>
+                  <p>${article.description}</p>
+                  <p class="card-text text-danger">${article.price}€</p>
+                  <a href="#" class="btn btn-primary">Ajouter</a>
+                </div>
+              
+              `;
+  
+              section_article.append(block_article);
+        
+              
+          
+      })
+      .catch(error => console.error('Error fetching images:', error));
+  
+  </script>
+</html>
